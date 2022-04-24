@@ -1,7 +1,10 @@
 package com.github.ajalt.clikt.testing
 
 import com.github.ajalt.clikt.core.CliktCommand
+import com.github.ajalt.clikt.core.context
 import com.github.ajalt.clikt.parsers.shlex
+import com.github.ajalt.mordant.rendering.AnsiLevel
+import com.github.ajalt.mordant.terminal.Terminal
 import io.kotest.matchers.shouldBe
 import kotlin.test.assertEquals
 import kotlin.test.fail
@@ -29,6 +32,12 @@ open class TestCommand(
     allowMultipleSubcommands,
     treatUnknownOptionsAsArgs
 ) {
+    init {
+        context {
+            terminal = parent?.terminal ?: Terminal(AnsiLevel.NONE)
+        }
+    }
+
     private var actualCount = 0
     final override fun run() {
         if (count == null) actualCount shouldBe 0

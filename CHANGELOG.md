@@ -1,16 +1,24 @@
 # Changelog
 
-## 3.4.2
-### Deprecated
-- `TermUi.echo`, `TermUi.prompt`, and `TermUi.confirm`. Use the equivalent methods on `CliktCommand` instead. ([#344](https://github.com/ajalt/clikt/issues/344))
-
-## 3.4.1
+## Unreleased
 ### Added
 - Added `obj` setter to context builder as an alternative to `currentContext.obj`
 - Added `option().boolean()` and `argument().boolean()`
 - `uint()` and `ulong()` parameter type conversions.
 - `CliktCommand.test` extension for testing your commands and their output
 
+### Changed
+- `prompt` and `confirm` are now implemented with mordant's prompt functionality, and the method parameters have changed to match mordant's
+
+### Removed
+- `CliktConsole`. Mordant is now used for all input and output. If you were defining a custom console, instead define a mordant `TerminalInterface` and set it on your context's `Terminal`.
+- `TermUi.echo`, `TermUi.prompt`, and `TermUi.confirm`. Use the equivalent methods on your `CliktCommand`, or use mordant's prompts directly.
+
+## 3.4.2
+### Deprecated
+- `TermUi.echo`, `TermUi.prompt`, and `TermUi.confirm`. Use the equivalent methods on `CliktCommand` instead. ([#344](https://github.com/ajalt/clikt/issues/344))
+
+## 3.4.1
 ### Changed
 - Updated Kotlin to 1.6.20
 
